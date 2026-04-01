@@ -1,0 +1,128 @@
+{
+  "scan_meta": {
+    "scanned_file_count": 10,
+    "scanned_files": [
+      "D:\\ai_security_dify_audit\\samples\\sample_eval.py",
+      "D:\\ai_security_dify_audit\\samples\\sample_open_risk.py",
+      "D:\\ai_security_dify_audit\\samples\\sample_pickle.py",
+      "D:\\ai_security_dify_audit\\samples\\sample_safe_file.py",
+      "D:\\ai_security_dify_audit\\samples\\sample_safe_query.py",
+      "D:\\ai_security_dify_audit\\samples\\sample_safe_subprocess.py",
+      "D:\\ai_security_dify_audit\\samples\\sample_secret.py",
+      "D:\\ai_security_dify_audit\\samples\\sample_sql.py",
+      "D:\\ai_security_dify_audit\\samples\\sample_subprocess.py",
+      "D:\\ai_security_dify_audit\\samples\\sample_yaml.py"
+    ],
+    "hit_count": 6
+  },
+  "summary": {
+    "scanned_file_count": 10,
+    "hit_count": 6,
+    "severity_summary": {
+      "High": 4,
+      "Medium": 2
+    },
+    "rule_id_summary": {
+      "R001": 1,
+      "R002": 1,
+      "R003": 1,
+      "R006": 1,
+      "R007": 1,
+      "R008": 1
+    },
+    "rule_name_summary": {
+      "pickle反序列化": 1,
+      "subprocess执行": 1,
+      "yaml.load风险": 1,
+      "危险函数eval": 1,
+      "硬编码API密钥": 1,
+      "硬编码密码": 1
+    },
+    "file_summary": {
+      "sample_eval.py": 1,
+      "sample_pickle.py": 1,
+      "sample_secret.py": 2,
+      "sample_subprocess.py": 1,
+      "sample_yaml.py": 1
+    },
+    "top_risks": [
+      "pickle反序列化",
+      "subprocess执行",
+      "yaml.load风险"
+    ]
+  },
+  "results": [
+    {
+      "file_path": "D:\\ai_security_dify_audit\\samples\\sample_eval.py",
+      "file_name": "sample_eval.py",
+      "line_no": 3,
+      "rule_id": "R003",
+      "rule_name": "危险函数eval",
+      "severity": "High",
+      "matched_text": "eval(",
+      "line_content": "    result = eval(user_input)",
+      "description": "存在动态执行风险",
+      "fix_suggestion": "避免使用eval处理外部输入"
+    },
+    {
+      "file_path": "D:\\ai_security_dify_audit\\samples\\sample_pickle.py",
+      "file_name": "sample_pickle.py",
+      "line_no": 4,
+      "rule_id": "R007",
+      "rule_name": "pickle反序列化",
+      "severity": "High",
+      "matched_text": "pickle.loads(",
+      "line_content": "obj = pickle.loads(data.encode())",
+      "description": "不安全反序列化风险",
+      "fix_suggestion": "避免加载不可信数据"
+    },
+    {
+      "file_path": "D:\\ai_security_dify_audit\\samples\\sample_secret.py",
+      "file_name": "sample_secret.py",
+      "line_no": 1,
+      "rule_id": "R002",
+      "rule_name": "硬编码API密钥",
+      "severity": "High",
+      "matched_text": "API_KEY = \"sk-test-12345678\"",
+      "line_content": "API_KEY = \"sk-test-12345678\"",
+      "description": "代码中疑似存在硬编码密钥或令牌",
+      "fix_suggestion": "不要在源码中保存密钥，改用环境变量或密钥管理服务"
+    },
+    {
+      "file_path": "D:\\ai_security_dify_audit\\samples\\sample_secret.py",
+      "file_name": "sample_secret.py",
+      "line_no": 2,
+      "rule_id": "R001",
+      "rule_name": "硬编码密码",
+      "severity": "High",
+      "matched_text": "password = \"admin123\"",
+      "line_content": "password = \"admin123\"",
+      "description": "代码中疑似存在硬编码密码",
+      "fix_suggestion": "将敏感信息移入环境变量或密钥管理服务"
+    },
+    {
+      "file_path": "D:\\ai_security_dify_audit\\samples\\sample_subprocess.py",
+      "file_name": "sample_subprocess.py",
+      "line_no": 4,
+      "rule_id": "R006",
+      "rule_name": "subprocess执行",
+      "severity": "Medium",
+      "matched_text": "subprocess.run(",
+      "line_content": "subprocess.run(cmd, shell=True)",
+      "description": "存在外部命令执行风险，特别是配合shell=True时更危险",
+      "fix_suggestion": "限制命令来源，避免shell=True，并做好参数校验"
+    },
+    {
+      "file_path": "D:\\ai_security_dify_audit\\samples\\sample_yaml.py",
+      "file_name": "sample_yaml.py",
+      "line_no": 4,
+      "rule_id": "R008",
+      "rule_name": "yaml.load风险",
+      "severity": "Medium",
+      "matched_text": "yaml.load(",
+      "line_content": "data = yaml.load(text)",
+      "description": "可能加载不安全对象",
+      "fix_suggestion": "改用safe_load"
+    }
+  ]
+}

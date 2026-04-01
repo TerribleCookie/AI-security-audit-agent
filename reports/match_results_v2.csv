@@ -1,0 +1,7 @@
+﻿file_path,file_name,line_no,rule_id,rule_name,severity,matched_text,line_content,description,fix_suggestion
+D:\ai_security_dify_audit\samples\sample_eval.py,sample_eval.py,3,R003,危险函数eval,High,eval(,    result = eval(user_input),存在动态执行风险,避免使用eval处理外部输入
+D:\ai_security_dify_audit\samples\sample_pickle.py,sample_pickle.py,4,R007,pickle反序列化,High,pickle.loads(,obj = pickle.loads(data.encode()),不安全反序列化风险,避免加载不可信数据
+D:\ai_security_dify_audit\samples\sample_secret.py,sample_secret.py,1,R002,硬编码API密钥,High,"API_KEY = ""sk-test-12345678""","API_KEY = ""sk-test-12345678""",代码中疑似存在硬编码密钥或令牌,不要在源码中保存密钥，改用环境变量或密钥管理服务
+D:\ai_security_dify_audit\samples\sample_secret.py,sample_secret.py,2,R001,硬编码密码,High,"password = ""admin123""","password = ""admin123""",代码中疑似存在硬编码密码,将敏感信息移入环境变量或密钥管理服务
+D:\ai_security_dify_audit\samples\sample_subprocess.py,sample_subprocess.py,4,R006,subprocess执行,Medium,subprocess.run(,"subprocess.run(cmd, shell=True)",存在外部命令执行风险，特别是配合shell=True时更危险,限制命令来源，避免shell=True，并做好参数校验
+D:\ai_security_dify_audit\samples\sample_yaml.py,sample_yaml.py,4,R008,yaml.load风险,Medium,yaml.load(,data = yaml.load(text),可能加载不安全对象,改用safe_load

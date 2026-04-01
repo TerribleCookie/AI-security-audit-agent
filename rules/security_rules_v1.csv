@@ -1,0 +1,11 @@
+﻿rule_id,rule_name,severity,pattern_type,pattern,description,fix_suggestion
+R001,硬编码密码,High,regex,"(?i)(password|passwd|pwd)\s*=\s*[""'][^""'\n]{3,}[""']",代码中疑似存在硬编码密码,将敏感信息移入环境变量或密钥管理服务
+R002,硬编码API密钥,High,regex,"(?i)(api[_-]?key|secret[_-]?key|access[_-]?token|token)\s*=\s*[""'][^""'\n]{8,}[""']",代码中疑似存在硬编码密钥或令牌,不要在源码中保存密钥，改用环境变量或密钥管理服务
+R003,危险函数eval,High,keyword,eval(,存在动态执行风险,避免使用eval处理外部输入
+R004,危险函数exec,High,keyword,exec(,存在动态执行风险,避免使用exec处理外部输入
+R005,系统命令执行,High,keyword,os.system(,存在命令执行风险,改为安全API并做参数校验
+R006,subprocess执行,Medium,regex,subprocess\.(Popen|run|call|check_output)\(,存在外部命令执行风险，特别是配合shell=True时更危险,限制命令来源，避免shell=True，并做好参数校验
+R007,pickle反序列化,High,keyword,pickle.loads(,不安全反序列化风险,避免加载不可信数据
+R008,yaml.load风险,Medium,regex,yaml\.load\(,可能加载不安全对象,改用safe_load
+R009,SQL字符串拼接,High,regex,"(?i)(SELECT|INSERT|UPDATE|DELETE).*(\+|format\(|f[""']).*(FROM|INTO|SET|WHERE)",可能存在SQL注入风险，仅作为字符串拼接型SQL的初筛规则,使用参数化查询
+R010,路径拼接读取,Medium,regex,open\([^)]*(input\(|request\.|sys\.argv),文件读取可能直接使用外部输入，存在路径遍历或任意文件访问风险,增加白名单校验、路径规范化和访问控制
