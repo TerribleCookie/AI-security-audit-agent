@@ -15,7 +15,6 @@
 - 📄 自动生成 Markdown 安全报告
 ## 🧠 系统架构
 
-```
 
 用户输入代码
 ↓
@@ -29,13 +28,11 @@ LLM 风险解释
 ↓
 结构化结果 / Markdown 报告
 
-```
 
 ---
 
 ## 📁 项目结构
 
-```
 
 ai_security_dify_audit/
 │
@@ -56,7 +53,6 @@ ai_security_dify_audit/
 ├── screenshots/    # 演示截图
 └── README.md
 
-````
 
 ---
 
