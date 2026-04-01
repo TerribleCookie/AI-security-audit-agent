@@ -15,7 +15,7 @@
 - 📄 自动生成 Markdown 安全报告
 ## 🧠 系统架构
 
-
+'''
 用户输入代码
 ↓
 Dify 工作流
@@ -27,13 +27,13 @@ HTTP API (Flask)
 LLM 风险解释
 ↓
 结构化结果 / Markdown 报告
-
+'''
 
 ---
 
 ## 📁 项目结构
 
-
+'''
 ai_security_dify_audit/
 │
 ├── scripts/        # 核心逻辑
@@ -52,7 +52,7 @@ ai_security_dify_audit/
 ├── docs/           # 文档
 ├── screenshots/    # 演示截图
 └── README.md
-
+'''
 
 ---
 
