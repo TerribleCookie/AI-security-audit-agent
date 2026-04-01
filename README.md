@@ -1,4 +1,3 @@
-```markdown
 # 🚀 AI Code Security Audit Agent
 
 一个结合 **规则检测 + LLM解释 + Dify工作流** 的 Python 代码安全审计系统，  
@@ -14,9 +13,6 @@
 - 🤖 LLM 自动生成风险解释与修复建议
 - 🔗 集成 Dify，实现自动化安全审计工作流
 - 📄 自动生成 Markdown 安全报告
-
----
-
 ## 🧠 系统架构
 
 ```
